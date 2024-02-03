@@ -19,8 +19,8 @@ jobs:
           cache: maven
       - name: Build, unit tests and integration tests
         run: |
-          chmod +x mvnw
-          ./mvnw install
+          chmod +x ./catalog-service/mvnw
+          ./catalog-service/mvnw install
       - name: Code vulnerability scanning
         uses: anchore/scan-action@v3
         id: scan

@@ -14,7 +14,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/SavaN222/spring-cloud-book/tree/main/config-repo
+          uri: https://github.com/PolarBookshop/config-repo
           default-label: main
           timeout: 5
           clone-on-start: true

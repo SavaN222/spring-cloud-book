@@ -59,7 +59,7 @@ jobs:
       - name: Build container image
         run: |
           chmod +x ./catalog-service/mvnw
-          ./catalog-service/mvnw spring-boot:build-image -DregistryRepo=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          ./catalog-service/mvnw spring-boot:build-image -DregistryRepo=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} -DregistryPassword={{ secrets.ACTION_PW }} -DregistryPublish=true -DregistryUsername=${{ github.actor }}
       - name: OCI image vulnerability scanning
         uses: anchore/scan-action@v3
         id: scan
@@ -77,6 +77,6 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.package-learning }}
+          password: ${{ secrets.ACTION_PW }}
       - name: Publish container image
         run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
